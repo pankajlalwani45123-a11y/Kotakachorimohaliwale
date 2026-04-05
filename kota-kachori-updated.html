@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kota Kachori – Mohali | Online Delivery · Takeaway · Call</title>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fire: #FF4500;
+  --amber: #FF8C00;
+  --gold: #FFD700;
+  --deep: #0D0500;
+  --brown: #2A0E00;
+  --cream: #FFFBF4;
+  --warm: #FFF5E4;
+  --green: #1B6B35;
+  --text: #1e0900;
+  --muted: #7a4520;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+/* ── FLOATING CALL ── */
+.float-call {
+  position: fixed; bottom: 20px; right: 20px; z-index: 999;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--deep);
+  font-weight: 800; font-size: .8rem; letter-spacing: .5px;
+  padding: 12px 20px; border-radius: 50px;
+  text-decoration: none; text-transform: uppercase;
+  box-shadow: 0 6px 24px rgba(255,215,0,.45);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 6px 24px rgba(255,215,0,.45); }
+  50% { box-shadow: 0 8px 36px rgba(255,215,0,.7), 0 0 0 8px rgba(255,215,0,.1); }
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--deep);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px; border-bottom: 1px solid rgba(255,215,0,.1);
+  position: sticky; top: 0; z-index: 100;
+}
+.tb-brand { display: flex; align-items: center; gap: 10px; }
+.tb-flame { font-size: 1.3rem; }
+.tb-name { font-family: 'Abril Fatface', cursive; font-size: 1.2rem; color: var(--gold); letter-spacing: 1px; }
+.tb-links { display: flex; gap: 9px; flex-wrap: wrap; }
+.tb-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.75); font-size: .68rem; font-weight: 700;
+  letter-spacing: 1px; padding: 6px 13px; border-radius: 30px;
+  text-decoration: none; text-transform: uppercase; transition: all .2s;
+}
+.tb-pill:hover { background: rgba(255,255,255,.15); color: #fff; }
+.tb-pill.ig { border-color: rgba(255,200,0,.28); color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--deep);
+  position: relative; overflow: hidden;
+  padding: 60px 20px 70px;
+  text-align: center;
+}
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(255,69,0,.55) 0%, transparent 62%),
+    radial-gradient(ellipse 40% 40% at 15% 80%, rgba(255,140,0,.15) 0%, transparent 55%);
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+@keyframes glowPulse { from { opacity: .75; } to { opacity: 1; } }
+.hero-dots {
+  position: absolute; inset: 0; opacity: .03;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.hero-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,215,0,.1); border: 1px solid rgba(255,215,0,.22);
+  color: var(--gold); font-size: .67rem; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; padding: 6px 16px; border-radius: 30px;
+  margin-bottom: 20px; animation: up .6s ease both;
+}
+.hero-h1 {
+  font-family: 'Abril Fatface', cursive;
+  font-size: clamp(4.5rem, 16vw, 10rem);
+  line-height: .87; color: #fff; letter-spacing: 2px;
+  text-shadow: 0 0 80px rgba(255,100,0,.4);
+  animation: up .6s .1s ease both;
+}
+.hero-h1 em { display: block; color: var(--gold); font-style: normal; }
+.hero-sub {
+  font-size: clamp(.75rem, 2vw, .92rem); color: rgba(255,255,255,.45);
+  letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+  margin: 14px 0 26px; animation: up .6s .2s ease both;
+}
+
+/* discount badge */
+.disc-badge {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: linear-gradient(135deg, #FF4500, #FF8C00);
+  border-radius: 16px; padding: 14px 30px;
+  box-shadow: 0 10px 36px rgba(255,69,0,.44);
+  margin-bottom: 28px; animation: up .6s .3s ease both;
+}
+.disc-badge .big { font-family: 'Abril Fatface', cursive; font-size: 2.2rem; color: #fff; line-height: 1; }
+.disc-badge .sm { font-size: .73rem; font-weight: 700; color: rgba(255,255,255,.9); letter-spacing: 1px; margin-top: 2px; }
+.disc-badge .xs { font-size: .62rem; color: rgba(255,255,255,.68); margin-top: 3px; }
+
+/* hero CTAs */
+.hero-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; animation: up .6s .4s ease both; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: .85rem; padding: 13px 24px; border-radius: 50px; text-decoration: none; transition: transform .2s, box-shadow .2s; white-space: nowrap; }
+.btn:hover { transform: translateY(-3px); }
+.btn-sw { background: #FC8019; color: #fff; box-shadow: 0 5px 20px rgba(252,128,25,.4); }
+.btn-sw:hover { box-shadow: 0 10px 30px rgba(252,128,25,.56); }
+.btn-zo { background: #E23744; color: #fff; box-shadow: 0 5px 20px rgba(226,55,68,.38); }
+.btn-zo:hover { box-shadow: 0 10px 30px rgba(226,55,68,.52); }
+.btn-call { background: var(--gold); color: var(--deep); box-shadow: 0 5px 20px rgba(255,215,0,.3); }
+.btn-call:hover { box-shadow: 0 10px 30px rgba(255,215,0,.46); }
+.btn-toing { background: #1B8B3B; color: #fff; box-shadow: 0 5px 20px rgba(27,139,59,.4); border: 2px solid #FF4FA3; }
+.btn-toing:hover { box-shadow: 0 10px 30px rgba(27,139,59,.56); }
+
+.hero-meta {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; flex-wrap: wrap;
+  color: rgba(255,255,255,.3); font-size: .67rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  animation: up .6s .5s ease both;
+}
+.sep { width: 3px; height: 3px; background: rgba(255,255,255,.18); border-radius: 50%; }
+
+@keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── TICKER ── */
+.ticker { background: var(--gold); padding: 10px 0; overflow: hidden; }
+.t-track { display: flex; gap: 56px; width: max-content; animation: scroll 20s linear infinite; }
+.t-track span { font-family: 'Abril Fatface', cursive; font-size: .88rem; letter-spacing: 3px; color: var(--deep); white-space: nowrap; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── OFFER BAR ── */
+.offer-bar {
+  background: linear-gradient(90deg, #7a0000, #B02020, #7a0000);
+  background-size: 200%; animation: shift 6s linear infinite;
+  padding: 12px 20px; text-align: center;
+}
+@keyframes shift { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+.offer-bar p { color: #fff; font-size: clamp(.74rem, 2.1vw, .88rem); font-weight: 700; line-height: 1.7; }
+.offer-bar strong { color: var(--gold); }
+.pb-row { display: flex; gap: 8px; justify-content: center; margin-top: 7px; flex-wrap: wrap; }
+.pb {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+  color: #fff; font-size: .67rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+}
+.pd { width: 7px; height: 7px; border-radius: 50%; }
+
+/* ── TAKEAWAY STRIP ── */
+.tw-strip {
+  background: linear-gradient(90deg, var(--brown), #4a1400, var(--brown));
+  padding: 18px 20px; text-align: center;
+}
+.tw-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.tw-icon { font-size: 2rem; }
+.tw-text h3 { font-family: 'Abril Fatface', cursive; font-size: 1.2rem; color: var(--gold); margin-bottom: 2px; }
+.tw-text p { color: rgba(255,255,255,.65); font-size: .77rem; line-height: 1.5; }
+.tw-text p strong { color: #fff; }
+
+/* ── SECTION HELPERS ── */
+.section { padding: 56px 20px; max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: .66rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--fire); margin-bottom: 7px; }
+.sec-h2 { font-family: 'Abril Fatface', cursive; font-size: clamp(1.8rem, 4.5vw, 2.8rem); color: var(--text); margin-bottom: 8px; line-height: 1.05; }
+.rule { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
+.rule::before, .rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(255,69,0,.2)); }
+.rule::after { background: linear-gradient(to left, transparent, rgba(255,69,0,.2)); }
+.rule em { color: var(--amber); font-style: normal; font-size: .9rem; }
+
+/* ── MENU SECTION ── */
+.menu-wrap { background: var(--warm); }
+
+/* Category header */
+.cat-head {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px; margin-top: 36px;
+}
+.cat-head:first-child { margin-top: 0; }
+.cat-label {
+  background: var(--fire); color: #fff;
+  font-family: 'Abril Fatface', cursive; font-size: .95rem; letter-spacing: 2px;
+  padding: 5px 16px; border-radius: 6px; white-space: nowrap;
+}
+.cat-line { flex: 1; height: 1px; background: linear-gradient(to right, rgba(255,69,0,.3), transparent); }
+
+/* compact item grid */
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+
+.item {
+  background: #fff; border-radius: 12px;
+  border: 1px solid rgba(255,69,0,.08);
+  padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 6px;
+  box-shadow: 0 2px 8px rgba(42,14,0,.05);
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.item::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(var(--fire), var(--amber));
+}
+.item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,69,0,.1); border-color: rgba(255,69,0,.18); }
+
+.item-name { font-weight: 700; font-size: .85rem; color: var(--text); line-height: 1.25; padding-right: 4px; }
+.item-tag {
+  display: inline-block; font-size: .55rem; font-weight: 800;
+  letter-spacing: .8px; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 10px; width: fit-content;
+}
+.tag-best { background: rgba(27,107,53,.1); color: var(--green); }
+.tag-new  { background: rgba(255,69,0,.1); color: var(--fire); }
+.tag-pop  { background: rgba(255,140,0,.1); color: var(--amber); }
+
+.item-prices {
+  display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  margin-top: auto; padding-top: 6px;
+  border-top: 1px dashed rgba(255,69,0,.1);
+}
+.p-online { font-size: .67rem; color: #bbb; text-decoration: line-through; }
+.p-disc { font-family: 'Abril Fatface', cursive; font-size: 1.1rem; color: var(--green); line-height: 1; }
+.p-label { font-size: .55rem; color: var(--green); font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+.p-dine { font-size: .63rem; color: #aaa; font-weight: 600; margin-left: auto; }
+.p-dine span { display: block; font-size: .56rem; color: #ccc; text-align: right; }
+
+/* ── ORDER WAYS ── */
+.ow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.ow {
+  border-radius: 18px; padding: 26px 20px; text-align: center;
+  transition: transform .25s, box-shadow .25s;
+}
+.ow:hover { transform: translateY(-4px); }
+.ow.sw { background: linear-gradient(145deg, #fff5ed, #ffe0c8); border: 1.5px solid rgba(252,128,25,.22); }
+.ow.zo { background: linear-gradient(145deg, #fff0f1, #ffd5d8); border: 1.5px solid rgba(226,55,68,.22); }
+.ow.ca { background: linear-gradient(145deg, #fffce0, #fff4a3); border: 1.5px solid rgba(255,190,0,.32); }
+.ow.wi { background: linear-gradient(145deg, #f0fff4, #c8f0d5); border: 1.5px solid rgba(27,107,53,.22); }
+.ow-icon { font-size: 2.2rem; margin-bottom: 10px; }
+.ow-title { font-family: 'Abril Fatface', cursive; font-size: 1.1rem; color: var(--text); margin-bottom: 6px; }
+.ow-desc { font-size: .74rem; color: #6a3a18; line-height: 1.6; margin-bottom: 14px; }
+.ow-list { list-style: none; text-align: left; margin-bottom: 16px; }
+.ow-list li { font-size: .72rem; color: #4a2000; padding: 3px 0; display: flex; align-items: flex-start; gap: 5px; line-height: 1.4; }
+.tick { color: var(--green); font-weight: 800; flex-shrink: 0; }
+.cross { color: #cc3300; font-weight: 800; flex-shrink: 0; }
+.ow-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 800; font-size: .76rem; letter-spacing: .5px;
+  padding: 9px 18px; border-radius: 30px; text-decoration: none;
+  transition: transform .2s; text-transform: uppercase;
+}
+.ow-btn:hover { transform: scale(1.04); }
+.ob-s { background: #FC8019; color: #fff; box-shadow: 0 4px 12px rgba(252,128,25,.3); }
+.ob-z { background: #E23744; color: #fff; box-shadow: 0 4px 12px rgba(226,55,68,.28); }
+.ob-c { background: var(--deep); color: var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+.ob-w { background: var(--green); color: #fff; box-shadow: 0 4px 12px rgba(27,107,53,.26); }
+
+/* ── DISCOUNT STEPS ── */
+.steps-wrap {
+  background: linear-gradient(135deg, var(--deep), #3a0c00);
+  padding: 56px 20px; position: relative; overflow: hidden;
+}
+.steps-wrap::before {
+  content: ''; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 200px;
+  background: radial-gradient(ellipse, rgba(255,140,0,.15) 0%, transparent 70%);
+}
+.steps-inner { max-width: 820px; margin: 0 auto; text-align: center; position: relative; }
+.steps-inner h2 {
+  font-family: 'Abril Fatface', cursive;
+  font-size: clamp(2rem, 6.5vw, 4.5rem); color: #fff; line-height: .9; margin-bottom: 8px;
+}
+.steps-inner h2 em { color: var(--gold); font-style: normal; display: block; }
+.steps-inner > p { color: rgba(255,255,255,.48); font-size: .83rem; margin-bottom: 34px; font-style: italic; }
+.steps { display: flex; justify-content: center; flex-wrap: wrap; }
+.step {
+  flex: 1; min-width: 130px; max-width: 185px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
+  padding: 20px 14px; text-align: center; position: relative;
+}
+.step:first-child { border-radius: 14px 0 0 14px; }
+.step:last-child  { border-radius: 0 14px 14px 0; }
+.step + .step::before { content: '→'; position: absolute; left: -12px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1rem; z-index: 2; }
+.sn { font-family: 'Abril Fatface', cursive; font-size: 1.9rem; color: var(--gold); line-height: 1; }
+.st { font-size: .69rem; color: rgba(255,255,255,.6); margin-top: 5px; line-height: 1.5; }
+.eg-box {
+  background: rgba(255,215,0,.08); border: 1px solid rgba(255,215,0,.18);
+  border-radius: 13px; padding: 16px 22px; margin-top: 26px; display: inline-block;
+}
+.eg-t { color: var(--gold); font-weight: 700; font-size: .64rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+.chips { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: center; }
+.chip { background: rgba(255,255,255,.08); color: #fff; font-size: .73rem; font-weight: 600; padding: 5px 10px; border-radius: 8px; }
+.chip.g { background: rgba(27,107,53,.4); color: #6eff8a; }
+.chip.y { background: rgba(255,215,0,.18); color: var(--gold); }
+
+/* ── BULK ── */
+.bulk-wrap {
+  background: var(--warm); padding: 56px 20px; text-align: center;
+}
+.bulk-inner { max-width: 680px; margin: 0 auto; }
+.bulk-inner h2 { font-family: 'Abril Fatface', cursive; font-size: clamp(1.8rem, 5vw, 3.2rem); color: var(--text); margin-bottom: 8px; }
+.bulk-inner h2 em { color: var(--fire); font-style: normal; }
+.bulk-inner p { font-size: .82rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+.bulk-inner p strong { color: var(--text); }
+.advance-note {
+  background: linear-gradient(135deg, rgba(255,69,0,.06), rgba(255,140,0,.06));
+  border: 1px solid rgba(255,140,0,.2); border-radius: 12px;
+  padding: 14px 22px; margin-bottom: 22px; display: inline-block;
+}
+.advance-note p { font-size: .78rem; color: var(--brown); font-weight: 700; margin: 0; }
+.advance-note p span { color: var(--fire); }
+.bulk-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--deep); color: var(--gold);
+  font-weight: 800; font-size: .9rem; letter-spacing: .5px;
+  padding: 15px 32px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 6px 24px rgba(13,5,0,.35);
+  transition: transform .2s, box-shadow .2s; text-transform: uppercase;
+}
+.bulk-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(13,5,0,.45); }
+
+/* ── FINAL CTA ── */
+.final {
+  background: radial-gradient(ellipse at 50% 0%, #4a0e00, var(--deep) 55%);
+  padding: 68px 20px; text-align: center; position: relative; overflow: hidden;
+}
+.final::after {
+  content: ''; position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 160px;
+  background: radial-gradient(ellipse, rgba(255,69,0,.1) 0%, transparent 70%);
+}
+.final-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.final h2 { font-family: 'Abril Fatface', cursive; font-size: clamp(2.6rem, 8.5vw, 6rem); color: #fff; line-height: .87; margin-bottom: 8px; text-shadow: 0 0 50px rgba(255,69,0,.25); }
+.final h2 em { color: var(--gold); font-style: normal; display: block; }
+.final .sub { color: rgba(255,255,255,.38); font-size: .78rem; margin-bottom: 28px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+.final-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.ig-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50px; padding: 9px 20px; text-decoration: none; transition: background .2s;
+}
+.ig-pill:hover { background: rgba(255,255,255,.12); }
+.ig-handle { color: rgba(255,255,255,.7); font-weight: 700; font-size: .78rem; letter-spacing: .5px; }
+
+/* footer */
+footer { background: var(--deep); color: rgba(255,255,255,.32); text-align: center; padding: 22px 20px; font-size: .72rem; line-height: 2; }
+footer strong { color: var(--gold); }
+footer a { color: rgba(255,255,255,.42); text-decoration: none; }
+footer a:hover { color: var(--gold); }
+
+@media (max-width: 600px) {
+  .topbar { padding: 12px 14px; }
+  .tb-pill .lbl { display: none; }
+  .items { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); }
+  .steps { flex-direction: column; align-items: center; }
+  .step { border-radius: 12px !important; width: 90%; max-width: 260px; }
+  .step + .step::before { content: '↓'; left: 50%; top: -12px; transform: translateX(-50%); }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING CALL BUTTON -->
+<a href="tel:7696973259" class="float-call">📞 Call to Order</a>
+
+<!-- ── TOPBAR ── -->
+<nav class="topbar">
+  <div class="tb-brand">
+    <span class="tb-flame">🌶️</span>
+    <span class="tb-name">Kota Kachori</span>
+  </div>
+  <div class="tb-links">
+    <a href="https://www.instagram.com/kotakachorimohaliwale" target="_blank" class="tb-pill ig">📸 <span class="lbl">@kotakachorimohaliwale</span></a>
+    <a href="tel:7696973259" class="tb-pill">📞 <span class="lbl">7696973259</span></a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-kicker">⭐ 4.1★ · Mohali's Favourite Street Food</div>
+    <h1 class="hero-h1">KOTA<em>KACHORI</em></h1>
+    <p class="hero-sub">📍 North Mohali, Kharar Road · Chandigarh</p>
+
+    <div class="disc-badge">
+      <span class="big">🔥 30% OFF · UPTO ₹75</span>
+      <span class="sm">On Swiggy &amp; Zomato · Orders above ₹159</span>
+      <span class="xs">Check live prices on Swiggy · Zomato · Toing App</span>
+    </div>
+
+    <div class="hero-btns">
+      <a href="https://www.toingit.com/menu/347081" target="_blank" class="btn btn-toing">🟢 Order on Toing — ₹0 Fee!</a>
+      <a href="https://www.swiggy.com/restaurants/kota-kachori-north-mohali-zirakpur-chandigarh-347081" target="_blank" class="btn btn-sw">🛵 Order on Swiggy</a>
+      <a href="https://www.zomato.com/chandigarh/kota-kachori-kharar-road-mohali/order" target="_blank" class="btn btn-zo">🍽️ Order on Zomato</a>
+      <a href="tel:7696973259" class="btn btn-call">📞 7696973259</a>
+    </div>
+
+    <div class="hero-meta">
+      <span>🛵 Home Delivery</span><span class="sep"></span>
+      <span>🥡 Takeaway</span><span class="sep"></span>
+      <span>📞 Call &amp; Order</span><span class="sep"></span>
+      <span>🕗 Open 10am – 8pm Daily</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="t-track">
+    <span>🌶️ KOTA KACHORI</span><span>⚡ 30% OFF UPTO ₹75</span><span>🛵 SWIGGY &amp; ZOMATO</span><span>📞 7696973259</span><span>🥡 TAKEAWAY READY</span><span>🕗 OPEN 10AM–8PM</span><span>🏆 FRESH DAILY</span><span>🔥 RAJASTHANI AUTHENTIC</span>
+    <span>🌶️ KOTA KACHORI</span><span>⚡ 30% OFF UPTO ₹75</span><span>🛵 SWIGGY &amp; ZOMATO</span><span>📞 7696973259</span><span>🥡 TAKEAWAY READY</span><span>🕗 OPEN 10AM–8PM</span><span>🏆 FRESH DAILY</span><span>🔥 RAJASTHANI AUTHENTIC</span>
+  </div>
+</div>
+
+<!-- ── OFFER BAR ── -->
+<div class="offer-bar">
+  <p>🟢 <strong>TOING APP:</strong> ₹0 Packaging · ₹0 Platform Fee · Offline Menu Prices! &nbsp;|&nbsp; 🔥 <strong>SWIGGY &amp; ZOMATO:</strong> 30% OFF up to <strong>₹75</strong> on orders above ₹159</p>
+  <div class="pb-row">
+    <span class="pb"><span class="pd" style="background:#1B8B3B"></span>🟢 Toing — ₹0 Fee!</span>
+    <span class="pb"><span class="pd" style="background:#FC8019"></span>Swiggy — 30% OFF</span>
+    <span class="pb"><span class="pd" style="background:#E23744"></span>Zomato — 30% OFF</span>
+    <span class="pb"><span class="pd" style="background:#FFD700"></span>📞 Call — Only Item Price</span>
+  </div>
+</div>
+
+<!-- ── DELIVERY & TAKEAWAY STRIP ── -->
+<div class="tw-strip">
+  <div class="tw-inner">
+    <div class="tw-icon">🥡</div>
+    <div class="tw-text">
+      <h3>We are a Delivery &amp; Takeaway Kitchen!</h3>
+      <p>Order on <strong>Toing</strong> (₹0 fee!), <strong>Swiggy or Zomato</strong> for home delivery, or <strong>call us to place a takeaway order</strong> — freshly packed &amp; ready to collect. No dine-in space, but the food is worth every bite at home!</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── MENU ── -->
+<div class="menu-wrap">
+<div class="section" style="max-width:900px;">
+
+  <p class="eyebrow" style="text-align:center">What We Serve</p>
+  <h2 class="sec-h2" style="text-align:center">Our Menu 🌶️</h2>
+  <div class="rule"><em>✦</em></div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px;">
+
+    <!-- KACHORI -->
+    <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(255,69,0,.1);box-shadow:0 2px 12px rgba(42,14,0,.06);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="font-size:1.4rem;">🫓</span>
+        <span style="font-family:'Abril Fatface',cursive;font-size:1rem;color:var(--text);letter-spacing:1px;">KACHORI</span>
+        <span style="margin-left:auto;background:rgba(255,69,0,.08);color:var(--fire);font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:1px;">BESTSELLER</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Hing Dal Kachori</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Jodhpur Pyaaj Kachori</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Kadhi Kachori</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Chole Kachori</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Kachori Plate [Dal]</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Kachori Plate [Pyaaj]</span>
+      </div>
+      <div style="margin-top:10px;font-size:.62rem;color:#1B8B3B;font-weight:800;">🔥 30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing</div>
+    </div>
+
+    <!-- GRILLED KACHORI -->
+    <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(255,69,0,.1);box-shadow:0 2px 12px rgba(42,14,0,.06);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="font-size:1.4rem;">🔥</span>
+        <span style="font-family:'Abril Fatface',cursive;font-size:1rem;color:var(--text);letter-spacing:1px;">GRILLED KACHORI</span>
+        <span style="margin-left:auto;background:rgba(255,140,0,.1);color:var(--amber);font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:1px;">FUSION</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Cheese Chilly Garlic</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Cheese Schezwan</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Tandoori Cheese</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Cheese Stuffed</span>
+      </div>
+      <div style="margin-top:10px;font-size:.62rem;color:#1B8B3B;font-weight:800;">🔥 30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing</div>
+    </div>
+
+    <!-- VADA PAV -->
+    <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(255,69,0,.1);box-shadow:0 2px 12px rgba(42,14,0,.06);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="font-size:1.4rem;">🍔</span>
+        <span style="font-family:'Abril Fatface',cursive;font-size:1rem;color:var(--text);letter-spacing:1px;">VADA PAV</span>
+        <span style="margin-left:auto;background:rgba(255,69,0,.08);color:var(--fire);font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:1px;">POPULAR</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Butter Vada Pav</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Chilly Spicy</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Schezwan</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Cheese Butter</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Tandoori Cheese</span>
+      </div>
+      <div style="margin-top:10px;font-size:.62rem;color:#1B8B3B;font-weight:800;">🔥 30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing</div>
+    </div>
+
+    <!-- MEALS -->
+    <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(255,69,0,.1);box-shadow:0 2px 12px rgba(42,14,0,.06);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="font-size:1.4rem;">🍛</span>
+        <span style="font-family:'Abril Fatface',cursive;font-size:1rem;color:var(--text);letter-spacing:1px;">MEALS</span>
+        <span style="margin-left:auto;background:rgba(27,107,53,.08);color:#1B6B35;font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:1px;">FILLING</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Chole Bhature [3pc]</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Kadhi Rice</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Chole Rice</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Aloo Sabzi Rice</span>
+      </div>
+      <div style="margin-top:10px;font-size:.62rem;color:#1B8B3B;font-weight:800;">🔥 30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing</div>
+    </div>
+
+    <!-- CHAAT -->
+    <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(255,69,0,.1);box-shadow:0 2px 12px rgba(42,14,0,.06);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="font-size:1.4rem;">🥗</span>
+        <span style="font-family:'Abril Fatface',cursive;font-size:1rem;color:var(--text);letter-spacing:1px;">CHAAT</span>
+        <span style="margin-left:auto;background:rgba(255,69,0,.08);color:var(--fire);font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:1px;">TANGY</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Dahi Papadi Chaat</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Dahi Kachori Chaat</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Dahi Samosa Chaat</span>
+      </div>
+      <div style="margin-top:10px;font-size:.62rem;color:#1B8B3B;font-weight:800;">🔥 30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing</div>
+    </div>
+
+    <!-- SNACKS + PATTY + SWEETS -->
+    <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(255,69,0,.1);box-shadow:0 2px 12px rgba(42,14,0,.06);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="font-size:1.4rem;">🥜</span>
+        <span style="font-family:'Abril Fatface',cursive;font-size:1rem;color:var(--text);letter-spacing:1px;">SNACKS &amp; MORE</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Aloo Samosa</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Chole Samosa</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Aloo Patty</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Grilled Cheese Patty</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Namak Para</span>
+        <span style="background:#fff5ed;color:#7a2800;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;">Gulab Jamun 🍮</span>
+      </div>
+      <div style="margin-top:10px;font-size:.62rem;color:#1B8B3B;font-weight:800;">🔥 30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing</div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div style="background:linear-gradient(135deg,#0D0500,#2a0800);border-radius:18px;padding:20px 24px;text-align:center;">
+    <p style="color:var(--gold);font-family:'Abril Fatface',cursive;font-size:1rem;margin-bottom:4px;">Tap below to see live prices &amp; order! 👇</p>
+    <p style="color:rgba(255,255,255,.5);font-size:.72rem;margin-bottom:16px;">30% OFF on Swiggy &amp; Zomato · ₹0 Fee on Toing · Best price on Call</p>
+    <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://www.toingit.com/menu/347081" target="_blank" class="btn btn-toing" style="font-size:.78rem;padding:10px 18px;">🟢 Toing</a>
+      <a href="https://www.swiggy.com/restaurants/kota-kachori-north-mohali-zirakpur-chandigarh-347081" target="_blank" class="btn btn-sw" style="font-size:.78rem;padding:10px 18px;">🛵 Swiggy</a>
+      <a href="https://www.zomato.com/chandigarh/kota-kachori-kharar-road-mohali/order" target="_blank" class="btn btn-zo" style="font-size:.78rem;padding:10px 18px;">🍽️ Zomato</a>
+      <a href="tel:7696973259" class="btn btn-call" style="font-size:.78rem;padding:10px 18px;">📞 Call</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ── ORDER WAYS ── -->
+<div class="section">
+  <p class="eyebrow" style="text-align:center">How to Get Your Kachori Fix</p>
+  <h2 class="sec-h2" style="text-align:center">3 Ways to Order 🛵</h2>
+  <div class="rule"><em>✦</em></div>
+
+  <!-- big promo note -->
+  <div style="background:linear-gradient(135deg,#1a0800,#4a1200);border-radius:18px;padding:22px 28px;margin-bottom:28px;text-align:center;border:1px solid rgba(255,215,0,.15);">
+    <p style="color:var(--gold);font-family:'Abril Fatface',cursive;font-size:1.1rem;letter-spacing:1px;margin-bottom:6px;">🏠 We are a Delivery &amp; Takeaway Only Kitchen</p>
+    <p style="color:rgba(255,255,255,.6);font-size:.8rem;line-height:1.7;">No dine-in space — but our food travels beautifully! Order online for delivery or call to collect your order. Same amazing taste, made fresh for you.</p>
+  </div>
+
+  <div class="ow-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+
+    <!-- TOING — BEST DEAL -->
+    <div class="ow" style="background:linear-gradient(145deg,#e8fff0,#c2f0d2);border:2px solid #1B8B3B;padding:30px 24px;position:relative;">
+      <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#1B8B3B;color:#fff;font-size:.6rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap;border:2px solid #FF4FA3;">⭐ BEST DEAL — ZERO FEES</div>
+      <div class="ow-icon">🟢</div>
+      <div class="ow-title">Order on Toing App</div>
+      <div class="ow-desc" style="font-weight:700;color:#0a4a1e;margin-bottom:10px;">₹0 Packaging · ₹0 Platform Fee · Offline Prices!</div>
+      <ul class="ow-list">
+        <li><span class="tick">✓</span>Zero packaging charges</li>
+        <li><span class="tick">✓</span>Zero platform fee</li>
+        <li><span class="tick">✓</span>Same prices as our menu</li>
+        <li><span class="tick">✓</span>Delivered to your door</li>
+        <li><span class="tick">✓</span>Powered by Swiggy — trusted!</li>
+      </ul>
+      <a href="https://www.toingit.com/menu/347081" target="_blank" class="ow-btn" style="background:#1B8B3B;color:#fff;box-shadow:0 4px 14px rgba(27,139,59,.35);border:2px solid #FF4FA3;">🟢 Order on Toing</a>
+    </div>
+
+    <div class="ow sw" style="padding:30px 24px;">
+      <div class="ow-icon">🛵</div>
+      <div class="ow-title">Swiggy / Zomato</div>
+      <div class="ow-desc" style="font-weight:600;color:#5a2800;margin-bottom:10px;">Get 30% off up to ₹75 on Swiggy &amp; Zomato!</div>
+      <ul class="ow-list">
+        <li><span class="tick">✓</span>Delivered hot to your doorstep</li>
+        <li><span class="tick">✓</span>30% OFF on orders above ₹159</li>
+        <li><span class="tick">✓</span>Live real-time tracking</li>
+        <li><span class="tick">✓</span>Easy online payment</li>
+        <li><span class="cross">+</span>Platform fee &amp; packaging charges apply</li>
+      </ul>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+        <a href="https://www.swiggy.com/restaurants/kota-kachori-north-mohali-zirakpur-chandigarh-347081" target="_blank" class="ow-btn ob-s">🛵 Swiggy</a>
+        <a href="https://www.zomato.com/chandigarh/kota-kachori-kharar-road-mohali/order" target="_blank" class="ow-btn ob-z">🍽️ Zomato</a>
+      </div>
+    </div>
+
+    <div class="ow ca" style="padding:30px 24px;">
+      <div class="ow-icon">📞</div>
+      <div class="ow-title">Call &amp; Collect — Takeaway</div>
+      <div class="ow-desc" style="font-weight:600;color:#5a3800;margin-bottom:10px;">Only item price — zero extra charges!</div>
+      <ul class="ow-list">
+        <li><span class="tick">✓</span>Call, order &amp; collect at our kitchen</li>
+        <li><span class="tick">✓</span>No commission · No packaging charges</li>
+        <li><span class="tick">✓</span>No extra GST — just item price</li>
+        <li><span class="tick">✓</span>Order ready when you arrive</li>
+        <li><span class="tick">✓</span>Fresh off the kadhai — hottest option!</li>
+      </ul>
+      <a href="tel:7696973259" class="ow-btn ob-c">📞 Call 7696973259</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── HOW DISCOUNT WORKS ── -->
+<div class="steps-wrap">
+  <div class="steps-inner">
+    <h2>SAVE UP TO <em>₹75 TODAY</em></h2>
+    <p>How the Swiggy &amp; Zomato discount works</p>
+    <div class="steps">
+      <div class="step"><div class="sn">01</div><div class="st">Search <strong>Kota Kachori</strong> on Swiggy or Zomato</div></div>
+      <div class="step"><div class="sn">02</div><div class="st">Add items worth <strong>₹159+</strong> to cart</div></div>
+      <div class="step"><div class="sn">03</div><div class="st">Discount applies <strong>automatically</strong> — 30%!</div></div>
+      <div class="step"><div class="sn">04</div><div class="st">Hot kachoris arrive at your door 🎉</div></div>
+    </div>
+    <div class="eg-box">
+      <div class="eg-t">💡 How it works on Swiggy &amp; Zomato</div>
+      <div class="chips">
+        <span class="chip">Add items to cart</span>
+        <span style="color:rgba(255,255,255,.35)">→</span>
+        <span class="chip y">Min order ₹159</span>
+        <span style="color:rgba(255,255,255,.35)">→</span>
+        <span class="chip g">30% OFF auto applied!</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BULK ORDER ── -->
+<div class="bulk-wrap">
+  <div class="bulk-inner">
+    <h2>Bulk Orders? <em>Call Us First</em></h2>
+    <p>Planning a party, office lunch, or get-together? <strong>Call us directly</strong> — we'll prepare everything fresh &amp; on time. <strong>Takeaway only for bulk orders</strong> — collect at our kitchen, freshly packed in bulk quantities.</p>
+    <div class="advance-note">
+      <p>💳 &nbsp; <span>Advance payment required</span> for bulk orders — helps us plan freshness &amp; quantity for you</p>
+    </div>
+    <a href="tel:7696973259" class="bulk-btn">📞 Call 7696973259 for Bulk Orders</a>
+  </div>
+</div>
+
+<!-- ── FINAL CTA ── -->
+<section class="final">
+  <div class="final-inner">
+    <h2>ORDER NOW <em>&amp; SAVE BIG</em></h2>
+    <p class="sub">Online Delivery · Takeaway Only · Call to Order · Mohali</p>
+    <div class="final-btns">
+      <a href="https://www.toingit.com/menu/347081" target="_blank" class="btn btn-toing">🟢 Toing — ₹0 Fee!</a>
+      <a href="https://www.swiggy.com/restaurants/kota-kachori-north-mohali-zirakpur-chandigarh-347081" target="_blank" class="btn btn-sw">🛵 Swiggy</a>
+      <a href="https://www.zomato.com/chandigarh/kota-kachori-kharar-road-mohali/order" target="_blank" class="btn btn-zo">🍽️ Zomato</a>
+      <a href="tel:7696973259" class="btn btn-call">📞 7696973259</a>
+    </div>
+    <a href="https://www.instagram.com/kotakachorimohaliwale" target="_blank" class="ig-pill">
+      <span>📸</span>
+      <span class="ig-handle">Follow us @kotakachorimohaliwale</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── INSTAGRAM ── -->
+<div style="background:var(--warm);padding:56px 20px;text-align:center;">
+  <div style="max-width:860px;margin:0 auto;">
+    <p style="font-size:.66rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--fire);margin-bottom:7px;">Follow Along</p>
+    <h2 style="font-family:'Abril Fatface',cursive;font-size:clamp(1.8rem,4.5vw,2.8rem);color:var(--text);margin-bottom:6px;">We're on Instagram 📸</h2>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:28px;">Fresh kachoris, behind-the-scenes &amp; daily updates — follow us for more!</p>
+
+    <!-- Profile Card -->
+    <div style="display:inline-flex;align-items:center;gap:16px;background:#fff;border-radius:20px;padding:18px 28px;box-shadow:0 4px 20px rgba(42,14,0,.08);border:1px solid rgba(255,69,0,.1);margin-bottom:28px;flex-wrap:wrap;justify-content:center;">
+      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;">🌶️</div>
+      <div style="text-align:left;">
+        <div style="font-family:'Abril Fatface',cursive;font-size:1.05rem;color:var(--text);">@kotakachorimohaliwale</div>
+        <div style="font-size:.74rem;color:var(--muted);margin-top:2px;">Kota Kachori · Mohali · Street Food 🔥</div>
+        <div style="font-size:.68rem;color:#aaa;margin-top:2px;">North Mohali, Kharar Road</div>
+      </div>
+      <a href="https://www.instagram.com/kotakachorimohaliwale" target="_blank"
+        style="display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);color:#fff;font-weight:800;font-size:.76rem;padding:9px 20px;border-radius:30px;text-decoration:none;letter-spacing:.5px;white-space:nowrap;box-shadow:0 4px 14px rgba(220,39,67,.3);">
+        📸 Follow Us
+      </a>
+    </div>
+
+    <a href="https://www.instagram.com/kotakachorimohaliwale" target="_blank"
+      style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);color:#fff;font-weight:800;font-size:.82rem;padding:12px 28px;border-radius:50px;text-decoration:none;letter-spacing:.5px;box-shadow:0 6px 20px rgba(220,39,67,.35);">
+      📸 Visit our Instagram
+    </a>
+  </div>
+</div>
+
+<!-- ── FIND US ── -->
+<div style="background:var(--deep);padding:56px 20px;text-align:center;">
+  <div style="max-width:860px;margin:0 auto;">
+    <p style="font-size:.66rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--fire);margin-bottom:7px;">Where to Find Us</p>
+    <h2 style="font-family:'Abril Fatface',cursive;font-size:clamp(1.8rem,4.5vw,2.8rem);color:#fff;margin-bottom:6px;">Our Location 📍</h2>
+    <p style="color:rgba(255,255,255,.45);font-size:.82rem;margin-bottom:24px;">Shop No 5, Mundi Kharar Rd, opposite Gurudwara Sahib,<br>LIC Colony, Model Town, Mundi Kharar, Mohali, Punjab 140301</p>
+    <div style="border-radius:18px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);border:2px solid rgba(255,215,0,.15);">
+      <iframe
+        src="https://maps.google.com/maps?q=Shop+no+5+Kota+Kachori+Mundi+Kharar+Rd+opposite+gurudwara+sahib+LIC+Colony+Model+Town+Mundi+Kharar+Punjab+140301&output=embed"
+        width="100%" height="360" style="border:0;display:block;"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a href="https://maps.app.goo.gl/frf2iTGzWopAcXSz8" target="_blank"
+      style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+      background:var(--gold);color:var(--deep);font-weight:800;font-size:.82rem;
+      padding:11px 24px;border-radius:50px;text-decoration:none;letter-spacing:.5px;
+      box-shadow:0 4px 16px rgba(255,215,0,.35);transition:transform .2s;"
+      onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      📍 Open in Google Maps
+    </a>
+  </div>
+</div>
+
+<!-- ── CUSTOMER REVIEWS ── -->
+<div style="background:var(--warm);padding:56px 20px;text-align:center;">
+  <div style="max-width:900px;margin:0 auto;">
+    <p style="font-size:.66rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--fire);margin-bottom:7px;">Happy Customers</p>
+    <h2 style="font-family:'Abril Fatface',cursive;font-size:clamp(1.8rem,4.5vw,2.8rem);color:var(--text);margin-bottom:4px;">What People Say ⭐</h2>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:32px;">Real reviews from our regulars on Swiggy & Zomato</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;text-align:left;">
+
+      <!-- Review 1 -->
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 16px rgba(42,14,0,.07);border:1px solid rgba(255,69,0,.08);position:relative;">
+        <div style="position:absolute;top:18px;right:18px;font-size:1.4rem;opacity:.12;">❝</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#FF4500,#FF8C00);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;font-weight:800;flex-shrink:0;">R</div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:var(--text);">Rahul S.</div>
+            <div style="color:var(--gold);font-size:.78rem;">★★★★★</div>
+          </div>
+          <div style="margin-left:auto;font-size:.6rem;color:#aaa;background:#f5f5f5;padding:3px 8px;border-radius:10px;">Swiggy</div>
+        </div>
+        <p style="font-size:.78rem;color:#5a3010;line-height:1.7;">"Best Kachori in Mohali hands down! The Hing Dal Kachori is absolutely authentic — tastes just like Kota. Order every week without fail!"</p>
+      </div>
+
+      <!-- Review 2 -->
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 16px rgba(42,14,0,.07);border:1px solid rgba(255,69,0,.08);position:relative;">
+        <div style="position:absolute;top:18px;right:18px;font-size:1.4rem;opacity:.12;">❝</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;font-weight:800;flex-shrink:0;">P</div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:var(--text);">Priya M.</div>
+            <div style="color:var(--gold);font-size:.78rem;">★★★★★</div>
+          </div>
+          <div style="margin-left:auto;font-size:.6rem;color:#aaa;background:#f5f5f5;padding:3px 8px;border-radius:10px;">Zomato</div>
+        </div>
+        <p style="font-size:.78rem;color:#5a3010;line-height:1.7;">"Tried the Grilled Cheese Kachori and the Dahi Kachori Chaat — both were amazing! Packaging was neat and arrived hot. Highly recommend 🔥"</p>
+      </div>
+
+      <!-- Review 3 -->
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 16px rgba(42,14,0,.07);border:1px solid rgba(255,69,0,.08);position:relative;">
+        <div style="position:absolute;top:18px;right:18px;font-size:1.4rem;opacity:.12;">❝</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1B6B35,#2a9d55);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;font-weight:800;flex-shrink:0;">A</div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:var(--text);">Amarjeet K.</div>
+            <div style="color:var(--gold);font-size:.78rem;">★★★★☆</div>
+          </div>
+          <div style="margin-left:auto;font-size:.6rem;color:#aaa;background:#f5f5f5;padding:3px 8px;border-radius:10px;">Swiggy</div>
+        </div>
+        <p style="font-size:.78rem;color:#5a3010;line-height:1.7;">"Ordered Chole Bhature and Kachori Plate for lunch — reminded me of old Rajasthan trips. Generous portions and fresh taste. Will order again!"</p>
+      </div>
+
+      <!-- Review 4 -->
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 16px rgba(42,14,0,.07);border:1px solid rgba(255,69,0,.08);position:relative;">
+        <div style="position:absolute;top:18px;right:18px;font-size:1.4rem;opacity:.12;">❝</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#FF8C00,#FFD700);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;font-weight:800;flex-shrink:0;">S</div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:var(--text);">Simran T.</div>
+            <div style="color:var(--gold);font-size:.78rem;">★★★★★</div>
+          </div>
+          <div style="margin-left:auto;font-size:.6rem;color:#aaa;background:#f5f5f5;padding:3px 8px;border-radius:10px;">Zomato</div>
+        </div>
+        <p style="font-size:.78rem;color:#5a3010;line-height:1.7;">"Office ordered bulk Vada Pav and Kachori for a team lunch — everyone loved it! Super affordable and the call & collect was super smooth. 10/10!"</p>
+      </div>
+
+    </div>
+
+    <!-- Rating Summary -->
+    <div style="display:inline-flex;align-items:center;gap:20px;background:#fff;border-radius:16px;padding:16px 30px;margin-top:28px;box-shadow:0 4px 14px rgba(42,14,0,.07);border:1px solid rgba(255,215,0,.2);flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:center;">
+        <div style="font-family:'Abril Fatface',cursive;font-size:2.2rem;color:var(--text);line-height:1;">4.1</div>
+        <div style="color:var(--gold);font-size:.9rem;">★★★★☆</div>
+        <div style="font-size:.62rem;color:#aaa;margin-top:2px;">Overall Rating</div>
+      </div>
+      <div style="width:1px;height:48px;background:rgba(0,0,0,.08);"></div>
+      <div style="text-align:left;">
+        <div style="font-size:.75rem;font-weight:700;color:var(--text);margin-bottom:4px;">Rated on Swiggy &amp; Zomato</div>
+        <div style="font-size:.7rem;color:var(--muted);">🛵 Swiggy · 🍽️ Zomato · Mohali's Favourite</div>
+        <div style="font-size:.65rem;color:#aaa;margin-top:2px;">Kachori · Chaat · Vada Pav · Meals</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <strong>Kota Kachori</strong> &nbsp;·&nbsp; Shop No 5, Mundi Kharar Rd, opposite Gurudwara Sahib, Mundi Kharar, Mohali<br>
+  📞 <a href="tel:7696973259">7696973259</a> &nbsp;·&nbsp;
+  📸 <a href="https://www.instagram.com/kotakachorimohaliwale" target="_blank">@kotakachorimohaliwale</a> &nbsp;·&nbsp;
+  🟢 <a href="https://www.toingit.com/menu/347081" target="_blank">Toing</a> &nbsp;·&nbsp;
+  🛵 <a href="https://www.swiggy.com/restaurants/kota-kachori-north-mohali-zirakpur-chandigarh-347081" target="_blank">Swiggy</a> &nbsp;·&nbsp;
+  🍽️ <a href="https://www.zomato.com/chandigarh/kota-kachori-kharar-road-mohali/order" target="_blank">Zomato</a><br>
+  <span style="opacity:.24;font-size:.66rem">© 2026 Kota Kachori · Online Delivery &amp; Takeaway Only · North Mohali</span>
+</footer>
+
+</body>
+</html>
